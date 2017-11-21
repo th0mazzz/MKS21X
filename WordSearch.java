@@ -41,7 +41,9 @@ public class WordSearch{
 
 	int randomNum = (int)(Math.random() * 1000000);
 	seed = randomNum;
-	System.out.println("Seed: " + randomNum);
+	if(rows > 0 && cols > 0){
+	    System.out.println("Seed: " + randomNum);
+	}
 	randgen = new Random(randomNum);
     }
 
@@ -332,55 +334,67 @@ public class WordSearch{
 
     
     public static void main(String[] args){
-	if(args.length < 3){
-	    WordSearch creation = new WordSearch();
-	}
-	
-        if(args.length == 3){
+	try{
 	    try{
-		WordSearch creation = new WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]);
-		creation.addAllWords();
-		creation.populate();
-		System.out.println(creation.toString());
-		System.out.println(creation.formatAddedWords());
-	    }
-	    catch(NumberFormatException e){
-		System.out.println("Invalid dimensions or seed inputted!");
-		System.exit(1);
-	    }
-	}
-	
-	if(args.length == 4){
-	    try{
-		WordSearch creation = new WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]));
-		creation.addAllWords();
-		creation.populate();
-		System.out.println(creation.toString());
-		System.out.println(creation.formatAddedWords());
-	    }
-	    catch(NumberFormatException e){
-		System.out.println("Invalid dimensions or seed inputted!");
-		System.exit(1);
-	    }
-	}
-	
-	if(args.length == 5){
-	    try{
-		WordSearch creation = new WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]), args[4]);
-		creation.addAllWords();
-		if(args[4].equals("key")){
-		    System.out.println(creation);
+		if(args.length < 3){
+		    WordSearch creation = new WordSearch();
 		}
-		else{
-		    creation.populate();
-		    System.out.println("For the solution, please type the 'key' parameter correctly");
-		    System.out.println(creation);
+	
+		if(args.length == 3){
+		    try{
+			WordSearch creation = new WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2]);
+			creation.addAllWords();
+			creation.populate();
+			System.out.println(creation.toString());
+			System.out.println(creation.formatAddedWords());
+		    }
+		    catch(NumberFormatException e){
+			System.out.println("Invalid dimensions or seed inputted!");
+			System.exit(1);
+		    }
+		}
+	
+		if(args.length == 4){
+		    try{
+			WordSearch creation = new WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]));
+			creation.addAllWords();
+			creation.populate();
+			System.out.println(creation.toString());
+			System.out.println(creation.formatAddedWords());
+		    }
+		    catch(NumberFormatException e){
+			System.out.println("Invalid dimensions or seed inputted!");
+			System.exit(1);
+		    }
+		}
+	
+		if(args.length == 5){
+		    try{
+			WordSearch creation = new WordSearch(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], Integer.parseInt(args[3]), args[4]);
+			creation.addAllWords();
+			if(args[4].equals("key")){
+			    System.out.println(creation);
+			}
+			else{
+			    creation.populate();
+			    System.out.println("For the solution, please type the 'key' parameter correctly");
+			    System.out.println(creation);
+			}
+		    }
+		    catch(NumberFormatException e){
+			System.out.println("Invalid dimensions or seed inputted!");
+			System.exit(1);
+		    }
 		}
 	    }
-	    catch(NumberFormatException e){
-		System.out.println("Invalid dimensions or seed inputted!");
+	    catch(IllegalArgumentException e){
+		System.out.println("Now, now, you can't have dimensions less than or equal to zero!");
 		System.exit(1);
 	    }
+	}
+	catch(NegativeArraySizeException e){
+	    System.out.println("Now, now, you can't have dimensions less than or equal to zero!");
+	    System.exit(1);
 	}
     }
 }
