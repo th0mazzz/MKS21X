@@ -19,4 +19,8 @@ public class Book{
     //public void setAuthor(String name){author = name;}
     //public void setTitle(String bookName){title = bookName;}
     //public void setISBN(String number){ISBN = number;}
+
+    public String toString(){
+	return author + ", " + title + ", " + ISBN;
+    }
 }
