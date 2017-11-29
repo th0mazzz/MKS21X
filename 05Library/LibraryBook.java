@@ -12,6 +12,7 @@ public abstract class LibraryBook extends Book implements Comparable<LibraryBook
     public abstract void returned();
     public abstract String circulationStatus();
 
+    
     public int compareTo(LibraryBook other){
 	if(getCallNum().compareTo(other.getCallNum()) > 0){
 	    return -1;
@@ -21,6 +22,7 @@ public abstract class LibraryBook extends Book implements Comparable<LibraryBook
 	}
 	return 0;
     }
+    
 
     public String toString(){
 	return super.toString() + circulationStatus() + getCallNum();
