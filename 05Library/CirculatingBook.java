@@ -20,4 +20,22 @@ public class CirculatingBook extends LibraryBook{
 	currentHolder = null;
 	dueDate = null;
     }
+
+    public String circulationStatus(){
+	if(getHolder() == null){
+	    return "Book avaliable";
+	}
+	else{
+	    return getHolder() + ", due: " + getDate();
+	}
+    }
+
+    public String toString(){
+	if(currentHolder == null){
+	    return super.toString();
+	}
+	else{
+	   return super.toString() + getHolder() + ", " + getDate();
+	}
+    }
 }
