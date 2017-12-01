@@ -1,4 +1,5 @@
-public class SuperArray{
+import java.util.Iterator;
+public class SuperArray implements Iterable<String>{
 
     //Important definitions
 
@@ -208,7 +209,9 @@ public class SuperArray{
 	    return true;
     }
 
-
+    public Iterator<String> iterator(){
+	return new SuperArrayIterator(0, size(), this);
+    }
 
     
 }
