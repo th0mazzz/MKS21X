@@ -1,4 +1,4 @@
-public class Barcode {
+public class Barcode implements Comparable<Barcode>{
 
     private String zipcode;
     private String[] key;
@@ -45,10 +45,29 @@ public class Barcode {
 	return getCode() + " (" + zipcode + ")";
     }
 
+    public int compareTo(Barcode other){
+	if(getZip().compareTo(other.getZip()) < 0){
+	    return -1;
+	}
+	else{
+	    if(getZip().compareTo(other.getZip()) > 0){
+		return 1;
+	    }
+	    else{
+		return 0;
+	    }
+	}
+    }
+
     public static void main(String[] args){
 	Barcode test1 = new Barcode("01234");
 	System.out.println(test1.getZip()); // prints 01234
 	System.out.println(test1.getCode()); //prints |||::::::||::|:|::||::|::|||:::|
 	System.out.println(test1); //prints |||::::::||::|:|::||::|::|||:::| (01234)
+        
+	Barcode test2 = new Barcode("98765");
+	System.out.println(test1.compareTo(test2)); //prints -1
+	System.out.println(test2.compareTo(test1)); //prints 1
+	System.out.println(test1.compareTo(test1)); //prints 0
     }
 }
