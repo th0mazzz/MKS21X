@@ -59,6 +59,10 @@ public class Barcode implements Comparable<Barcode>{
 	}
     }
 
+    public boolean equals(Barcode other){
+	return getCode().equals(other.getCode());
+    }
+
     public static void main(String[] args){
 	Barcode test1 = new Barcode("01234");
 	System.out.println(test1.getZip()); // prints 01234
@@ -69,5 +73,8 @@ public class Barcode implements Comparable<Barcode>{
 	System.out.println(test1.compareTo(test2)); //prints -1
 	System.out.println(test2.compareTo(test1)); //prints 1
 	System.out.println(test1.compareTo(test1)); //prints 0
+	
+	System.out.println(test1.equals(test1)); //true
+	System.out.println(test1.equals(test2)); //false
     }
 }
