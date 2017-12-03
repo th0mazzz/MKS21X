@@ -33,17 +33,22 @@ public class Barcode {
 	    sumOfNumbers = sumOfNumbers + number;
 	}
 	
-	int check = sumOfNumbers % 10;
+	int check = sumOfNumbers % 10; //calculates check number
 	returnCode = returnCode + key[check];
 
-	returnCode = returnCode + "|";
+	returnCode = returnCode + "|"; //other guard rail
 
 	return returnCode;
+    }
+
+    public String toString(){
+	return getCode() + " (" + zipcode + ")";
     }
 
     public static void main(String[] args){
 	Barcode test1 = new Barcode("01234");
 	System.out.println(test1.getZip()); // prints 01234
 	System.out.println(test1.getCode()); //prints |||::::::||::|:|::||::|::|||:::|
+	System.out.println(test1); //prints |||::::::||::|:|::||::|::|||:::| (01234)
     }
 }
