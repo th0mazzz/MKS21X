@@ -4,11 +4,12 @@ public class Barcode implements Comparable<Barcode>{
     private String[] key;
 
     public Barcode(String zip){
+	String copy = zip; //so that parseInt doesn't actually change the zip from a String
 	if(zip.length() != 5){
 	    throw new IllegalArgumentException();
 	}
 	try{
-	    Integer.parseInt(zip);
+	    Integer.parseInt(copy);
 	}
 	catch(NumberFormatException e){
 	    throw new IllegalArgumentException();
@@ -87,6 +88,6 @@ public class Barcode implements Comparable<Barcode>{
 	System.out.println(test1.equals(test1)); //true
 	System.out.println(test1.equals(test2)); //false
 
-	//Barcode test3 = new Barcode("123");
+	//arcode test3 = new Barcode("00123");
     }
 }
