@@ -4,6 +4,18 @@ public class Barcode implements Comparable<Barcode>{
     private String[] key;
 
     public Barcode(String zip){
+	if(zip.length() != 5){
+	    throw new IllegalArgumentException();
+	}
+	try{
+	    for(int index = 0; index < 5; index++){
+		Integer.parseInt(zip);
+	    }
+	}
+	catch(NumberFormatException e){
+	    throw new IllegalArgumentException();
+	}
+	
 	zipcode = zip;
 	key = new String[10];
 	key[0] = "||:::";
@@ -76,5 +88,7 @@ public class Barcode implements Comparable<Barcode>{
 	
 	System.out.println(test1.equals(test1)); //true
 	System.out.println(test1.equals(test2)); //false
+
+	Barcode test3 = new Barcode("123");
     }
 }
