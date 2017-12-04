@@ -88,6 +88,6 @@ public class Barcode implements Comparable<Barcode>{
 	System.out.println(test1.equals(test1)); //true
 	System.out.println(test1.equals(test2)); //false
 
-	//arcode test3 = new Barcode("00123");
+	//Barcode test3 = new Barcode("00123");
     }
 }
