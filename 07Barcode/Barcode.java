@@ -1,7 +1,6 @@
 public class Barcode implements Comparable<Barcode>{
 
     private String zipcode;
-    private String[] key;
 
     public Barcode(String zip){
 	String copy = zip; //so that parseInt doesn't actually change the zip from a String
@@ -16,7 +15,14 @@ public class Barcode implements Comparable<Barcode>{
 	}
 	
 	zipcode = zip;
-	key = new String[10];
+    }
+
+    public String getZip(){
+	return zipcode;
+    }
+
+    public String getCode(){
+	String[] key = new String[10];
 	key[0] = "||:::";
 	key[1] = ":::||";
 	key[2] = "::|:|";
@@ -27,13 +33,7 @@ public class Barcode implements Comparable<Barcode>{
 	key[7] = "|:::|";
 	key[8] = "|::|:";
 	key[9] = "|:|::";
-    }
-
-    public String getZip(){
-	return zipcode;
-    }
-
-    public String getCode(){
+	
 	String returnCode = "";
 	int sumOfNumbers = 0; //will use after for loop
 
