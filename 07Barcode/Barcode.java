@@ -91,3 +91,12 @@ public class Barcode implements Comparable<Barcode>{
 	//Barcode test3 = new Barcode("00123");
     }
 }
+
+/* to do list
+
+-make toCode and toZip static
+-write to zip first lol
+-give toCode and toZip their respective exception throws
+-make getcode and getzip
+
+*/
