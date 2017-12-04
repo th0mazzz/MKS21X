@@ -8,9 +8,7 @@ public class Barcode implements Comparable<Barcode>{
 	    throw new IllegalArgumentException();
 	}
 	try{
-	    for(int index = 0; index < 5; index++){
-		Integer.parseInt(zip);
-	    }
+	    Integer.parseInt(zip);
 	}
 	catch(NumberFormatException e){
 	    throw new IllegalArgumentException();
@@ -89,6 +87,6 @@ public class Barcode implements Comparable<Barcode>{
 	System.out.println(test1.equals(test1)); //true
 	System.out.println(test1.equals(test2)); //false
 
-	Barcode test3 = new Barcode("123");
+	//Barcode test3 = new Barcode("123");
     }
 }
