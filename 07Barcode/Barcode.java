@@ -21,7 +21,7 @@ public class Barcode implements Comparable<Barcode>{
 	return zipcode;
     }
 
-    public String getCode(){
+    public String toCode(){
 	String[] key = new String[10];
 	key[0] = "||:::";
 	key[1] = ":::||";
@@ -53,7 +53,7 @@ public class Barcode implements Comparable<Barcode>{
     }
 
     public String toString(){
-	return getCode() + " (" + zipcode + ")";
+	return toCode() + " (" + zipcode + ")";
     }
 
     public int compareTo(Barcode other){
@@ -71,13 +71,13 @@ public class Barcode implements Comparable<Barcode>{
     }
 
     public boolean equals(Barcode other){
-	return getCode().equals(other.getCode());
+	return toCode().equals(other.toCode());
     }
 
     public static void main(String[] args){
 	Barcode test1 = new Barcode("01234");
 	System.out.println(test1.getZip()); // prints 01234
-	System.out.println(test1.getCode()); //prints |||::::::||::|:|::||::|::|||:::|
+	System.out.println(test1.toCode()); //prints |||::::::||::|:|::||::|::|||:::|
 	System.out.println(test1); //prints |||::::::||::|:|::||::|::|||:::| (01234)
         
 	Barcode test2 = new Barcode("98765");
