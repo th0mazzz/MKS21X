@@ -70,6 +70,8 @@ public class Barcode implements Comparable<Barcode>{
 	if(code.charAt(0) != '|' || code.charAt(code.length() - 1) != '|'){
 	    throw new IllegalArgumentException();
 	}
+	code = code.substring(1, code.length() - 1);
+	System.out.println(code);
 	if(code.length() != 32){
 	    throw new IllegalArgumentException();
 	}
@@ -82,7 +84,7 @@ public class Barcode implements Comparable<Barcode>{
 	for(int index = 1; index < 25; index = index + 5){
 	    for(int keyIndex = 0; keyIndex < 10; keyIndex++){
 		System.out.println(code.substring(index, index + 5));
-		System.out.println(code.substring(index + 5, index + 10));6666666
+		System.out.println(code.substring(index + 5, index + 10));
 		if(code.substring(index, index + 5).equals(key[keyIndex])){
 		    System.out.println(code.substring(index, index + 5));
 		    returnZip = returnZip + keyIndex;
