@@ -52,6 +52,52 @@ public class Barcode implements Comparable<Barcode>{
 	return returnCode;
     }
 
+    public static String toZip(String code){
+        String[] key = new String[10];
+	key[0] = "||:::";
+	key[1] = ":::||";
+	key[2] = "::|:|";
+	key[3] = "::||:";
+	key[4] = ":|::|";
+	key[5] = ":|:|:";
+	key[6] = ":||::";
+	key[7] = "|:::|";
+	key[8] = "|::|:";
+	key[9] = "|:|::";
+
+	String returnZip = "";
+
+	if(code.charAt(0) != '|' || code.charAt(code.length() - 1) != '|'){
+	    throw new IllegalArgumentException();
+	}
+	if(code.length() != 32){
+	    throw new IllegalArgumentException();
+	}
+	
+	for(int index = 0; index < code.length(); index++){
+	    if(code.charAt(index) != ':' && code.charAt(index) != '|'){
+		throw new IllegalArgumentException();
+	    }
+	}
+	for(int index = 1; index < 25; index = index + 5){
+	    for(int keyIndex = 0; keyIndex < 10; keyIndex++){
+		System.out.println(code.substring(index, index + 5));
+		System.out.println(code.substring(index + 5, index + 10));6666666
+		if(code.substring(index, index + 5).equals(key[keyIndex])){
+		    System.out.println(code.substring(index, index + 5));
+		    returnZip = returnZip + keyIndex;
+		}
+		else{
+		    System.out.println("This is what you want");
+		    throw new IllegalArgumentException();
+		}
+	    }
+	}
+			
+
+	return "end";
+    }
+
     public String toString(){
 	return toCode(zipcode) + " (" + zipcode + ")";
     }
@@ -94,6 +140,8 @@ public class Barcode implements Comparable<Barcode>{
 	System.out.println(test1.equals(test2)); //false
 
 	//Barcode test3 = new Barcode("00123");
+
+        System.out.println(toZip("|||::::::||::|:|::||::|::|||:::|"));
     }
 }
 
