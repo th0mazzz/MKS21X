@@ -21,7 +21,7 @@ public class Barcode implements Comparable<Barcode>{
 	return zipcode;
     }
 
-    public String toCode(){
+    public static String toCode(String zip){
 	String[] key = new String[10];
 	key[0] = "||:::";
 	key[1] = ":::||";
@@ -39,7 +39,7 @@ public class Barcode implements Comparable<Barcode>{
 
 	returnCode = returnCode + '|'; //guard rail
 	for(int digit = 0; digit < 5; digit++){
-	    int number = zipcode.charAt(digit) - '0'; //gives the number using ASCII
+	    int number = zip.charAt(digit) - '0'; //gives the number using ASCII
 	    returnCode = returnCode + key[number];
 	    sumOfNumbers = sumOfNumbers + number;
 	}
@@ -53,7 +53,7 @@ public class Barcode implements Comparable<Barcode>{
     }
 
     public String toString(){
-	return toCode() + " (" + zipcode + ")";
+	return toCode(zipcode) + " (" + zipcode + ")";
     }
 
     public int compareTo(Barcode other){
@@ -71,13 +71,18 @@ public class Barcode implements Comparable<Barcode>{
     }
 
     public boolean equals(Barcode other){
-	return toCode().equals(other.toCode());
+	return getCode().equals(other.getCode());
+    }
+
+    public String getCode(){
+	return toCode(getZip());
     }
 
     public static void main(String[] args){
 	Barcode test1 = new Barcode("01234");
 	System.out.println(test1.getZip()); // prints 01234
-	System.out.println(test1.toCode()); //prints |||::::::||::|:|::||::|::|||:::|
+	System.out.println(toCode(test1.getZip())); //prints |||::::::||::|:|::||::|::|||:::|
+	System.out.println(test1.getCode()); //prints |||::::::||::|:|::||::|::|||:::|
 	System.out.println(test1); //prints |||::::::||::|:|::||::|::|||:::| (01234)
         
 	Barcode test2 = new Barcode("98765");
@@ -93,8 +98,7 @@ public class Barcode implements Comparable<Barcode>{
 }
 
 /* to do list
-
--make toCode and toZip static
+toZip static
 -write to zip first lol
 -give toCode and toZip their respective exception throws
 -make getcode and getzip
