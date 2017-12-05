@@ -1,40 +1,47 @@
+//import java.util.Arrays;
 public class Barcode implements Comparable<Barcode>{
 
     private String zipcode;
+    //public String[] key = {"||:::", ":::||", "::|:|", "::||:", ":|::|",
+    //		           ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
+     /*
+     key[0] = "||:::";
+     key[1] = ":::||";
+     key[2] = "::|:|";
+     key[3] = "::||:";
+     key[4] = ":|::|";
+     key[5] = ":|:|:";
+     key[6] = ":||::";
+     key[7] = "|:::|";
+     key[8] = "|::|:";
+     key[9] = "|:|::";
+     */
 
-    public Barcode(String zip){
-	String copy = zip; //so that parseInt doesn't actually change the zip from a String
-	if(zip.length() != 5){
-	    throw new IllegalArgumentException();
-	}
-	try{
-	    Integer.parseInt(copy);
-	}
-	catch(NumberFormatException e){
-	    throw new IllegalArgumentException();
-	}
-	
-	zipcode = zip;
-    }
+     public Barcode(String zip){
+	 String copy = zip; //so that parseInt doesn't actually change the zip from a String
+	 if(zip.length() != 5){
+	     throw new IllegalArgumentException();
+	 }
+	 try{
+	     Integer.parseInt(copy);
+	 }
+	 catch(NumberFormatException e){
+	     throw new IllegalArgumentException();
+	 }
 
-    public String getZip(){
-	return zipcode;
-    }
+	 zipcode = zip;
+     }
 
-    public static String toCode(String zip){
-	String[] key = new String[10];
-	key[0] = "||:::";
-	key[1] = ":::||";
-	key[2] = "::|:|";
-	key[3] = "::||:";
-	key[4] = ":|::|";
-	key[5] = ":|:|:";
-	key[6] = ":||::";
-	key[7] = "|:::|";
-	key[8] = "|::|:";
-	key[9] = "|:|::";
-	
-	String returnCode = "";
+     public String getZip(){
+	 return zipcode;
+     }
+
+     public static String toCode(String zip){
+
+	 String[] key = {"||:::", ":::||", "::|:|", "::||:", ":|::|",
+			 ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
+
+	 String returnCode = "";
 	int sumOfNumbers = 0; //will use after for loop
 
 	returnCode = returnCode + '|'; //guard rail
@@ -76,6 +83,31 @@ public class Barcode implements Comparable<Barcode>{
 
     public String getCode(){
 	return toCode(getZip());
+    }
+
+    public static String toZip(String code){
+
+	String[] key = {"||:::", ":::||", "::|:|", "::||:", ":|::|",
+			":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
+
+	if(code.charAt(0) != '|' || code.charAt(code.length() - 1) != '|'){
+	    throw new IllegalArgumentException();
+	}
+	if(code.length() != 32){
+	    throw new IllegalArgumentException();
+	}
+	for(int index = 0; index < code.length(); index++){
+	    if(code.charAt(index) != '|' && code.charAt(index) != ':'){
+		throw new IllegalArgumentException();
+	    }
+	}
+	for(int index = 1; index < 25; index = index + 5){
+	    if(key.indexOf(code.substring(index, index + 5)) == -1){
+		throw new IllegalArgumentException();
+	    }
+	}
+	//if(key.indexOf(code.substring(code.length() - 6, code.length() - 2)) != 
+
     }
 
     public static void main(String[] args){
