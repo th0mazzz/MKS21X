@@ -72,7 +72,7 @@ public class Barcode implements Comparable<Barcode>{
 	}
 	code = code.substring(1, code.length() - 1);
 	System.out.println(code);
-	if(code.length() != 32){
+	if(code.length() != 30){
 	    throw new IllegalArgumentException();
 	}
 	
@@ -81,7 +81,7 @@ public class Barcode implements Comparable<Barcode>{
 		throw new IllegalArgumentException();
 	    }
 	}
-	for(int index = 1; index < 25; index = index + 5){
+	for(int index = 0; index < 25; index = index + 5){
 	    for(int keyIndex = 0; keyIndex < 10; keyIndex++){
 		System.out.println(code.substring(index, index + 5));
 		System.out.println(code.substring(index + 5, index + 10));
