@@ -22,6 +22,9 @@ public class Barcode implements Comparable<Barcode>{
     }
 
     public static String toCode(String zip){
+	if(zip.length() != 5){
+	    throw new IllegalArgumentException();
+	}
 	String[] key = new String[10];
 	key[0] = "||:::";
 	key[1] = ":::||";
