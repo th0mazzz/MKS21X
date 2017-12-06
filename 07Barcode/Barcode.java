@@ -81,7 +81,22 @@ public class Barcode implements Comparable<Barcode>{
 		throw new IllegalArgumentException();
 	    }
 	}
-	//checks for the check
+	//checks for invalid digit sequences
+	boolean status = false;
+	for(int index = 0; index < 25; index = index + 5){
+	    String digitSeq = code.substring(index, index + 5);
+	    // System.out.println(digitSeq);
+	    for(int keyIndex = 0; keyIndex < 10; keyIndex++){
+		if(digitSeq.equals(key[keyIndex])){
+		    status = true;
+		}
+	    }
+	    if(status == false){
+		throw new IllegalArgumentException();
+	    }
+	}
+	
+	//checks the check
 	int check = -1; // for these purposes, -1 will signal no check
 	String checkCodeForm = code.substring(25);
 	System.out.println("check: " + checkCodeForm);
