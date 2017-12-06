@@ -65,39 +65,52 @@ public class Barcode implements Comparable<Barcode>{
 	key[8] = "|::|:";
 	key[9] = "|:|::";
 
-	String returnZip = "";
-
+	//checks for guardrails 
 	if(code.charAt(0) != '|' || code.charAt(code.length() - 1) != '|'){
 	    throw new IllegalArgumentException();
 	}
+	//checks for barcode length
 	code = code.substring(1, code.length() - 1);
 	System.out.println(code);
 	if(code.length() != 30){
 	    throw new IllegalArgumentException();
 	}
-	
+	//checks for illegal characters 
 	for(int index = 0; index < code.length(); index++){
 	    if(code.charAt(index) != ':' && code.charAt(index) != '|'){
 		throw new IllegalArgumentException();
 	    }
 	}
+	//checks for the check
+	int check = -1; // for these purposes, -1 will signal no check
+	String checkCodeForm = code.substring(25);
+	System.out.println("check: " + checkCodeForm);
+	for(int index = 0; index < 10; index++){
+	    if(checkCodeForm.equals(key[index])){
+		check = index;
+	    }
+	}
+	if(check == -1){
+	    throw new IllegalArgumentException();
+	}
+	String actualZip = "";
+	int sumOfDigits = 0;
 	for(int index = 0; index < 25; index = index + 5){
+	    String section = code.substring(index, index + 5);
+	    System.out.println(section);
 	    for(int keyIndex = 0; keyIndex < 10; keyIndex++){
-		System.out.println(code.substring(index, index + 5));
-		System.out.println(code.substring(index + 5, index + 10));
-		if(code.substring(index, index + 5).equals(key[keyIndex])){
-		    System.out.println(code.substring(index, index + 5));
-		    returnZip = returnZip + keyIndex;
-		}
-		else{
-		    System.out.println("This is what you want");
-		    throw new IllegalArgumentException();
+		if(section.equals(key[keyIndex])){
+		    sumOfDigits = sumOfDigits + keyIndex;
+		    actualZip = actualZip + keyIndex;
 		}
 	    }
 	}
-			
+	int actualCheck = sumOfDigits % 10;
+	if(check != actualCheck){
+	    throw new IllegalArgumentException();
+	}
 
-	return "end";
+	return actualZip;
     }
 
     public String toString(){
@@ -148,8 +161,6 @@ public class Barcode implements Comparable<Barcode>{
 }
 
 /* to do list
-toZip static
--write to zip first lol
 -give toCode and toZip their respective exception throws
 -make getcode and getzip
 */
