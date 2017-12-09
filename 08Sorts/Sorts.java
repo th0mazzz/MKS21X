@@ -41,10 +41,21 @@ public class Sorts{
 		//if element is not greater than any element in sorted portion of array,
 		//then it is fine where it is
 	    }
-	}
-		    
+	}	    
     }
-    
+
+    public static void bubbleSort(int[] data){
+	for(int outerIndex = 0; outerIndex < data.length; outerIndex++){
+	    for(int innerIndex = 0; innerIndex < data.length - 1 - outerIndex; innerIndex++){
+		if(data[innerIndex] > data[innerIndex + 1]){
+		    int tempValue = data[innerIndex + 1];
+		    data[innerIndex + 1] = data[innerIndex];
+		    data[innerIndex] = tempValue;
+		}
+	    }
+	}
+    }
+
     public static void main(String[] args){
 	int[] test = new int[10];
 	for(int index = 0; index < test.length; index++){
@@ -65,5 +76,16 @@ public class Sorts{
 	System.out.println(Arrays.toString(test2));
 	insertionSort(test2);
 	System.out.println('\n' + "Insertion Sort:" + '\n' + Arrays.toString(test2));
+
+	System.out.println("--------------------");
+
+	int[] test3 = new int[10];
+	for(int index = 0; index < test3.length; index++){
+	    test3[index] = (int)(Math.random()*100);
+	}
+
+	System.out.println(Arrays.toString(test3));
+	bubbleSort(test3);
+	System.out.println('\n' + "Bubble Sort:" + '\n' + Arrays.toString(test2));
     }
 }
