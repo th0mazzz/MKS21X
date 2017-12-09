@@ -86,6 +86,6 @@ public class Sorts{
 
 	System.out.println(Arrays.toString(test3));
 	bubbleSort(test3);
-	System.out.println('\n' + "Bubble Sort:" + '\n' + Arrays.toString(test2));
+	System.out.println('\n' + "Bubble Sort:" + '\n' + Arrays.toString(test3));
     }
 }
