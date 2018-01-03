@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class SuperArray{
 
     //Important definitions
@@ -62,7 +63,7 @@ public class SuperArray{
     //adds an element to the end of array,  increases array capacity by 1
     public boolean add(String element){
 	resize();
-	String[] newStrings = new String[size() + 1];
+	String[] newStrings = new String[data.length + 1];
 	for(int index = 0; index < size(); index++){
 	    newStrings[index] = data[index];
 	}
@@ -168,13 +169,14 @@ public class SuperArray{
 	}
 	if(targetIndex < 0 || targetIndex > size()){
 	    System.out.println("Index out of range");
+	    throw new IndexOutOfBoundsException();
 	}
 	resize();
 	int currentIndex = size() - 1;
 	for(; currentIndex >= targetIndex; currentIndex--){
 	    data[currentIndex + 1] = data[currentIndex];
 	}
-	data[targetIndex + 1] = element;
+	data[targetIndex] = element;
 	size++;
     }
 
@@ -208,9 +210,6 @@ public class SuperArray{
 	    return true;
     }
 
-
-
-    
 }
 
 
