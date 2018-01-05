@@ -1,5 +1,5 @@
-import java.util.Iterator;
-public class SuperArray implements Iterable<String>{
+import java.util.ArrayList;
+public class SuperArray{
 
     //Important definitions
 
@@ -27,6 +27,11 @@ public class SuperArray implements Iterable<String>{
     	size = calcSize();
     }
 
+    //Another one
+    public SuperArray(int startCapacity){
+	size = 0;
+	data = new String[startCapacity];
+    }
 
     //Calc Size for Constructor
      public int calcSize(){
@@ -63,7 +68,7 @@ public class SuperArray implements Iterable<String>{
     //adds an element to the end of array,  increases array capacity by 1
     public boolean add(String element){
 	resize();
-	String[] newStrings = new String[size() + 1];
+	String[] newStrings = new String[data.length + 1];
 	for(int index = 0; index < size(); index++){
 	    newStrings[index] = data[index];
 	}
@@ -90,7 +95,7 @@ public class SuperArray implements Iterable<String>{
     //Returns the element at the specified position in this list
     public String get(int index){
 	if(index >= size() || index < 0){
-	    return "You bad at index!";
+	    throw new IndexOutOfBoundsException();
 	}
 	return data[index];
     }
@@ -98,8 +103,7 @@ public class SuperArray implements Iterable<String>{
     //changes element of index and returns replaced element
     public String set(int index, String element){
 	if(index >= size() || index < 0){
-	    System.out.println("Index is out of range, moron! Learn to count!");
-	    return null;
+	    throw new IndexOutOfBoundsException();
 	}
 	String oldElement = data[index];
 	data[index] = element;
@@ -165,29 +169,27 @@ public class SuperArray implements Iterable<String>{
     //adds string to given index and shifts rest of values over to right
     public void add(int targetIndex, String element){
 	if(data.length == 0){
-	    System.out.println("Empty array!");
+	    throw new RuntimeException("The array length is 0");
 	}
 	if(targetIndex < 0 || targetIndex > size()){
-	    System.out.println("Index out of range");
+	    throw new IndexOutOfBoundsException();
 	}
 	resize();
 	int currentIndex = size() - 1;
 	for(; currentIndex >= targetIndex; currentIndex--){
 	    data[currentIndex + 1] = data[currentIndex];
 	}
-	data[targetIndex + 1] = element;
+	data[targetIndex] = element;
 	size++;
     }
 
     //removes element by index, returns removed element
     public String remove(int targetIndex){
 	if(size() == 0){
-	    System.out.println("Empty array!");
-	    return null;
+	    throw new RuntimeException("The array length is empty");
 	}
        	if(targetIndex < 0 || targetIndex > size()){
-	    System.out.println("Index out of range");
-	    return null;
+	    throw new IndexOutOfBoundsException();
 	}
 	int currentIndex = targetIndex;
 	String removedElement = data[targetIndex];
@@ -209,7 +211,8 @@ public class SuperArray implements Iterable<String>{
 	    return true;
     }
 
-    public Iterator<String> iterator(){
-	return new SuperArrayIterator(0, size(), this);
-    }
 }
+
+
+
+
