@@ -18,7 +18,7 @@ public class Driver{
 	for(String s : data){
 	    System.out.print(s+" ");
 	}
-	/*
+	
 	String[] wow = {"3", "hello", "48yrewh", "oh baby", "9f", "111", "abc"};
 	SuperArray data2 = new SuperArray(wow);
 
@@ -33,7 +33,7 @@ public class Driver{
 	for(String s : data2){
 	    System.out.print(s+" ");
 	}
-	*/
+	
     }
 }
 
