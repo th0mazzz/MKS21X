@@ -27,6 +27,11 @@ public class SuperArray{
     	size = calcSize();
     }
 
+    //Another one
+    public SuperArray(int startCapacity){
+	size = 0;
+	data = new String[startCapacity];
+    }
 
     //Calc Size for Constructor
      public int calcSize(){

@@ -44,19 +44,29 @@ public class OrderedSuperArray extends SuperArray{
         
 
 
-
     public int findIndexBinary(String value){
 	int start = 0;
 	int end = size() - 1;
-	while(!(get((end - start) / 2).compareTo(value) < 0 && get((end - start) / 2).compareTo(value) > 0)){
-	    if(get((end - start) / 2).compareTo(value) < 0){
-	        start = start + (end - start) / 2;
+	int current = (start + end) / 2;
+	int oldCurrent = -1;
+        while(start <= end){
+	    if(value.compareTo(get(current)) > 0){
+		start = current;
+		oldCurrent = current;
+		current = (start + end) / 2;
 	    }
-   	    if(get((end - start) / 2).compareTo(value) > 0){
-		end = end - (end - start) / 2;
+	    if(value.compareTo(get(current)) < 0){
+		end = current;
+		oldCurrent = current;
+		current = (start + end) / 2;
 	    }
+	    if(current == oldCurrent){
+		return current;
+	    }
+	    oldCurrent = current;
+	    //System.out.println("Start: " + start + ", End: " + end + " Current: "+ current + "oldCurrent: " + oldCurrent);
+		
 	}
-	return end;
-
+	return current;
     }
 }
