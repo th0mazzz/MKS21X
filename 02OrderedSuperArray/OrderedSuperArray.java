@@ -12,7 +12,9 @@ public class OrderedSuperArray extends SuperArray{
 
     //Takes Array Constructor
     public OrderedSuperArray(String[] array){
-	super(array);
+        for(int index = 0; index < array.length; index++){
+	    add(array[index]);
+	}
     }
 
     public void add(int index, String value){
@@ -25,7 +27,7 @@ public class OrderedSuperArray extends SuperArray{
 	    return true;
       	}
 	for(int index = 0; index < size(); index++){
-	    System.out.println("Insert Index = " + findIndex(value));
+	    //System.out.println("Insert Index = " + findIndex(value));
 	    int insertIndex = findIndex(value);
 		super.add(insertIndex, value);
 		return true;
@@ -33,6 +35,10 @@ public class OrderedSuperArray extends SuperArray{
 	return true;
     }
 
+    public String set(int index, String thing){
+	throw new UnsupportedOperationException();
+    }
+    
     private int findIndex(String value){
 	for(int index = 0; index < size(); index++){
 	    if(value.compareTo(get(index)) < 0){
@@ -70,3 +76,4 @@ public class OrderedSuperArray extends SuperArray{
 	return current;
     }
 }
+
