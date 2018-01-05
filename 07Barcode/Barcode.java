@@ -157,6 +157,7 @@ public class Barcode implements Comparable<Barcode>{
 	return toCode(getZip());
     }
 
+    /*
     public static void main(String[] args){
 	Barcode test1 = new Barcode("01234");
 	System.out.println(test1.getZip()); // prints 01234
@@ -176,6 +177,7 @@ public class Barcode implements Comparable<Barcode>{
 
         System.out.println(toZip("|||::::::||::|:|::||::|::|||:::|"));
     }
+    */
 }
 
 /* to do list
